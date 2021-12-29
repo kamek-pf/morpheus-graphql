@@ -33,7 +33,8 @@ data Deity = Deity
   { name :: Text, -- Non-Nullable Field
     power :: Maybe Text, -- Nullable Field
     realm :: Realm,
-    bornAt :: Maybe City
+    bornAt :: Maybe City,
+    someTuples :: [(Text, Int)]
   }
   deriving (Generic, GQLType)
 
@@ -62,7 +63,8 @@ someDeity =
     { name = "Morpheus",
       power = Just "Shapeshifting",
       realm = Dream,
-      bornAt = Nothing
+      bornAt = Nothing,
+      someTuples = [("Thing 1", 1), ("Thing 2", 2)]
     }
 
 dbDeity :: Text -> Maybe City -> IO (Either String Deity)
@@ -72,5 +74,6 @@ dbDeity _ bornAt =
       { name = "Morpheus",
         power = Just "Shapeshifting",
         realm = Dream,
-        bornAt
+        bornAt,
+        someTuples = [("Thing 1", 1), ("Thing 2", 2)]
       }
